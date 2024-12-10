@@ -17,6 +17,7 @@ class Board:
         self.bill = Bill()
         self.orders_list = []
         self.l=[]
+        self.passward=12345678
         self.total=0
 
     def start_program(self):
@@ -57,7 +58,7 @@ class Board:
         print(f"New Order: {self.l[0][1]}  {self.l[0][0]}  {self.l[0][2]}")
 
     def manager(self):
-       self.passward=12345678
+       
        self.x=int(input("Please Enter Passward ::"))
        if(self.x==self.passward):
           print ("Hello Boss ")
@@ -185,5 +186,3 @@ enter type food ::"""
         print("\n    The Bill has been printed successfully!   ")
 
 
-x = Board()
-x.start_program()
