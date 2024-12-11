@@ -20,7 +20,7 @@ class Board:
         self.passward=12345678
         self.total=0
 
-    def start_program(self):
+    def start_program(self,x):
         while True:  
             print("Main Meal ::")
             self.meals.display()
@@ -31,8 +31,8 @@ class Board:
             print("Appetizer ::")
             self.appetizer.display()
 
-        
-            self.des = int(input("1-New order / 0-Exit /2-Manager board ::"))
+            print("1-New order / 0-Exit /2-Manager board ::")
+            self.des = x
             if self.des == 1:
                 self.start_new_order()
             elif self.des == 0:
@@ -46,9 +46,9 @@ class Board:
 
         self.print_all_orders_and_bill()
 
-    def start_new_order(self):
+    def start_new_order(self,y):
         
-        self.order.orders()
+        self.order.orders(y)
         self.l = self.order.get_order_info()
         
         
@@ -57,7 +57,7 @@ class Board:
         
         print(f"New Order: {self.l[0][1]}  {self.l[0][0]}  {self.l[0][2]}")
 
-    def manager(self):
+    def manager(self,y):
        
        self.x=int(input("Please Enter Passward ::"))
        if(self.x==self.passward):
@@ -79,7 +79,7 @@ class Board:
 3-Appetizers
 4-Drinks
 enter type food ::"""
-              type=int (input(x)) 
+              type=y
               if(type==1):
                  self.meals.delet_MainMeal()
               elif (type==2):

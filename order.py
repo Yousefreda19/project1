@@ -22,14 +22,14 @@ class order:
          print(self.x)
          print(self.y)    
         
-    def orders(self):
+    def orders(self,y):
         x="""
 1-Main Meals
 2-sweets
 3-Appetizers
 4-Drinks
 enter type food ::"""
-        type=int (input(x)) 
+        type=y 
         if(type==1):
            self.order_meal()
         elif (type==2):
