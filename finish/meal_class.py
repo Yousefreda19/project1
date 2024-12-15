@@ -46,6 +46,22 @@ class main_class:
             print("Quantity updated successfully.")
         else:
             print("Invalid item number.")
+    def is_found(self, product_index, requested_quantity):
+      try:
+        
+        product = self.list[product_index - 1]  
+        
+
+        if product[2] >= requested_quantity: 
+            return True
+        else:
+            print("Not enough quantity available.")
+            return False
+      except IndexError:  
+        print("Product not found.")
+        return False
+    def get_list(self):
+        return self.list 
 class MainMeals(main_class):
     def __init__(self):
         super().__init__("Main Meal", [["meat", 122, 100, 1], ["chicken", 120, 100, 2]])
@@ -55,6 +71,6 @@ class sweet(main_class):
 class drink(main_class):
     def __init__(self):
         super().__init__("Drink", [["orange",60,100,1],["mango",50,100,2]])        
-class drink(main_class):
+class Appetizer(main_class):
     def __init__(self):
         super().__init__("Appetizer",[["tahini",15,1000,1],["Vegetable Salad",15,42,2]])                               
