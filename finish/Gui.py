@@ -167,7 +167,7 @@ def seting():
         frame_buttons.pack(pady=20, padx=20, fill=BOTH, expand=True)
 
         
-        btn1 = Button(frame_buttons, text="Add meals ", font=('Tajawal', 12), bg='#022841', fg="white", height=2, width=20, command=lambda: print("Button 1 pressed"))
+        btn1 = Button(frame_buttons, text="Add meals ", font=('Tajawal', 12), bg='#022841', fg="white", height=2, width=20 ,command=add)
         btn1.grid(row=0, column=0, padx=10, pady=10)
 
         btn2 = Button(frame_buttons, text="Delete meal ", font=('Tajawal', 12), bg='#022841', fg="white", height=2, width=20, command=lambda: print("Button 2 pressed"))
@@ -182,6 +182,7 @@ def seting():
      else:
         
         Label(setting, text="Incorrect password!", fg="red", font=('Tajawal', 10)).grid(row=2, column=1, padx=10, pady=10)
+          
 
 
     
@@ -192,4 +193,52 @@ start = Button(f1, width=40, bg='#022841', font=('Tajawal', 11), fg="white", bd=
 start.pack(padx=10, pady=5)
 seting = Button(f1, width=40, bg='#022841', font=('Tajawal', 11), fg="white", bd=0, relief=FLAT, cursor='hand2', height=2, text='Settings', compound=LEFT,command=seting)
 seting.pack(padx=10, pady=5)
+def add():
+
+    fullscreen_frame = Toplevel(root)
+    fullscreen_frame.attributes("-fullscreen", True)  
+    
+    
+    button_frame = Frame(fullscreen_frame, bg='#022841', width=200)
+    button_frame.pack(side="left", fill=Y)  
+    def show_input_fields():
+        
+        for widget in content_frame.winfo_children():
+            widget.destroy()
+        
+        
+        Label(content_frame, text="Name Meal", font=("Arial", 16), bg="#FEAD33", fg="black").grid(row=0, column=0, padx=10, pady=10, sticky=W)
+        Entry(content_frame, font=("Arial", 14), width=20).grid(row=0, column=1, padx=10, pady=10)
+        
+        Label(content_frame, text="Price", font=("Arial", 16), bg="#FEAD33", fg="black").grid(row=1, column=0, padx=10, pady=10, sticky=W)
+        Entry(content_frame, font=("Arial", 14), width=20).grid(row=1, column=1, padx=10, pady=10)
+        
+        Label(content_frame, text="Amount", font=("Arial", 16), bg="#FEAD33", fg="black").grid(row=2, column=0, padx=10, pady=10, sticky=W)
+        Entry(content_frame, font=("Arial", 14), width=20).grid(row=2, column=1, padx=10, pady=10)
+
+    
+    btn1 = Button(button_frame, text="Main Meal",bg='#022841', font=('Tajawal', 11), fg="white", height=2, width=15, command=show_input_fields)
+    btn1.pack(pady=10, padx=5)
+
+    btn2 = Button(button_frame, text="Sweeet", bg='#022841', font=('Tajawal', 11), fg="white", height=2, width=15, command=show_input_fields)
+    btn2.pack(pady=10, padx=5)
+
+    btn3 = Button(button_frame, text="Drink", bg='#022841', font=('Tajawal', 11), fg="white", height=2, width=15, command=show_input_fields)
+    btn3.pack(pady=10, padx=5)
+    btn5 = Button(button_frame, text="Appetizer", bg='#022841', font=('Tajawal', 11), fg="white", height=2, width=15,command=show_input_fields)
+    btn5.pack(pady=10, padx=5)
+
+    btn4 = Button(button_frame, text="Exit Fullscreen", bg='#022841', font=('Tajawal', 11), fg="white", height=2, width=15,command=fullscreen_frame.destroy)
+    btn4.pack(pady=10, padx=5)
+
+    
+    content_frame = Frame(fullscreen_frame, bg='#FEAD33')
+    content_frame.pack(side="right", fill=BOTH, expand=True)
+
+    label = Label(content_frame, text="Add Meal My Boss", font=("Arial", 30), bg='#022841', fg="white")
+    label.pack(pady=50)
+   
+
+
+       
 root.mainloop()

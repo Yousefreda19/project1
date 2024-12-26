@@ -132,6 +132,6 @@ Enter food type:: """
         for item in order:
             print(f"{item[1]}       {item[0]}        {item[2]}")
             self.total += item[1] * item[2]
-#board=Board()
+board=Board()
 
-#board.start_program()
+board.start_program()

@@ -43,18 +43,15 @@ class order:
         food_type.display_items()
         ordering = int(input("Please enter the number of the food item: "))
         amount = int(input("Enter the amount you need: "))
-        boo1=food_type.is_found(ordering,amount)
         
-        
-        if boo1==False :
-           return self.order_food(food_type)
-      
-        
-        m = food_type.get_list()
-        food_details = [m[ordering-1][0], amount, m[ordering-1][1]]
-        
-        
-        self.list_order.append(food_details)
+        if food_type.is_found(ordering, amount):
+            food_type.reduce_stock(ordering, amount)
+            m = food_type.get_list()
+            food_details = [m[ordering-1][0], amount, m[ordering-1][1]]
+            self.list_order.append(food_details)
+        else:
+            print("Order cannot be completed. Try again.")
+            self.order_food(food_type)
         
     def deleted_list_order(self):
         for idx, item in enumerate(self.list_order):
@@ -79,4 +76,3 @@ class order:
 
     def get_order_info(self):
         return self.list_order
-
