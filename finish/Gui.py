@@ -35,7 +35,7 @@ canvas.configure(yscrollcommand=scrollbar.set)
 scrollbar.pack(side=RIGHT, fill=Y)
 canvas.pack(side=LEFT, fill=BOTH, expand=True)
 
-# إنشاء إطار داخلي على Canvas
+
 f2 = Frame(canvas, bg='#FEAD33')
 canvas.create_window((0, 0), window=f2, anchor='nw')
 def update_scrollregion(event):
@@ -62,7 +62,7 @@ title_main.pack(fill=X, pady=5)
 
 frame_main_meal = Frame(f2, bg='#FEAD33')  
 frame_main_meal.pack(fill=X, pady=20)  
-m1 = Button(frame_main_meal, width=200, bg='#022841', font=('Tajawal', 11), fg="white", bd=0, relief=FLAT, cursor='hand2', height=200, image=img_manu3, text=f'Meat  {meals.list[0][1]} EGP', compound=TOP,)
+m1 = Button(frame_main_meal, width=200, bg='#022841', font=('Tajawal', 11), fg="white", bd=0, relief=FLAT, cursor='hand2', height=200, image=img_manu3, text=f'Meat  {meals.list[0][1]} EGP', compound=TOP)
 m1.pack(side=LEFT, padx=10)
 m2 = Button(frame_main_meal, width=200, bg='#022841', font=('Tajawal', 11), fg="white", bd=0, relief=FLAT, cursor='hand2', height=200, image=img_manu4, text=f'Chiken  {meals.list[1][1]} EGP', compound=TOP)
 m2.pack(side=LEFT, padx=10)
@@ -140,8 +140,11 @@ def enter_name():
             frame_orders = Frame(f1, bg='white')
             frame_orders.pack(fill=BOTH, expand=True,side=LEFT,pady=50, padx=10)  
 
+
             order_label = Label(frame_orders, text="Your Order", font=('Tajawal', 14), fg='black')
             order_label.pack(pady=10)
+            btn21 = Button(frame_orders, text="Finish", font=('Tajawal', 12), bg='#022841', fg="white", height=2, width=20)
+            btn21.pack(pady=10,side=BOTTOM)
 
            
 
@@ -152,6 +155,7 @@ def enter_name():
 
     next_button = Button(f1, text="Next", font=('Tajawal', 12), bg='#022841', fg="white", command=save_info)
     next_button.pack(pady=20)
+
 
 def seting():
     
