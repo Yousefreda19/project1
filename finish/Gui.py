@@ -143,6 +143,7 @@ def enter_name():
     f_num_entry.pack(side=LEFT, padx=10)
 
     def save_info():
+
         name = customer_name.get()
         phone = customer_phone.get()
 
@@ -165,6 +166,7 @@ def enter_name():
             trv.heading("#1",text="Num",anchor="c")
             trv.heading("#2",text="price",anchor="c")
             def bill():
+               global total
                total=0
                for item in trv.get_children():
                       trv.delete(item)
@@ -183,15 +185,36 @@ def enter_name():
                 Bill.title("Bill")    
                 frame = Frame(Bill, bg='#FEAD33')  
                 frame.pack(fill='both', expand=True)    
-                header_label = Label(frame, text="**********WeZo**********", bg='orange', font=("Arial", 16))  
+                header_label = Label(frame, text="*************WeZo*************", bg='#FEAD33', font=("Arial", 16))  
                 header_label.pack(pady=10)  
-                time_label = Label(frame, text="------------------------", bg='orange')  
+                name_value = f_name_entry.get()  # Get the text from the name entry  
+                num_value = f_num_entry.get() 
+                name_label = Label(frame, text=f"name: {name_value}", bg='#FEAD33',font=("Arial", 16))  
+                name_label.pack(pady=5)   
+                
+                num_label = Label(frame, text=f"num: {num_value}", bg='#FEAD33',font=("Arial", 16))  
+                num_label.pack(pady=5) 
+                time_label = Label(frame, text="------------------------------------", bg='#FEAD33')  
                 time_label.pack(pady=5)   
+                for i in range(len(sb)):  
+                   quantity = int(sb[i].get())  
+                   if quantity > 0:  
+                      meal_name = menu[i][0] 
+                      x=menu[i][1] 
+                      h=x*quantity
+                      t = Label(frame, text=f"{meal_name}       {quantity}       {h} ", bg='#FEAD33',font=(16))  
+                      t.pack(pady=5)  
+
                 current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # تنسيق التاريخ والوقت  
-                time_display_label = Label(frame, text=current_time, bg='orange', font=("Arial", 12))  
+                time_display_label = Label(frame, text=current_time, bg='#FEAD33', font=("Arial", 16))  
                 time_display_label.pack(pady=5)
+                
+                end2_label = Label(frame, text=f"total price  {total}", bg='orange', font=("Arial", 16))  
+                end2_label.pack(pady=10)
                 end_label = Label(frame, text="Good Bye", bg='orange', font=("Arial", 16))  
-                end_label.pack(pady=10)  
+                end_label.pack(pady=10) 
+                 
+
             btn22 = Button(f1, text="ok", font=('Tajawal', 12), bg='#022841', fg="white", height=2, width=20,command=bill)
             btn22.pack(pady=10,side=BOTTOM)         
             btn21 = Button(f1, text="finish", font=('Tajawal', 12), bg='#022841', fg="white", height=2, width=20,command=finish)
