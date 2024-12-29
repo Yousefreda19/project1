@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import ttk
 import datetime
 from class_customerinfo import customer_info
 import datetime
@@ -9,6 +10,7 @@ from order import order
 from bill import Bill
 from order import order
 from bill import Bill
+import datetime
 board=Board()
 order = order()
 new_order = customer_info()
@@ -22,6 +24,17 @@ root = Tk()
 root.geometry('1000x900')
 root.iconbitmap('y.ico')
 root.title("WeZo Restourant.")
+menu={
+    0:['meat',122],
+    1:['chicken',120],
+    2:['Basbosa',1001],
+    3:['Kunafa',140],
+    4:['orange',60],
+    5:['mango',50],
+    6:['tahini',15],
+    7:['Vegetable Salad',15],
+   
+    }
 
 
 f1 = Frame(root, bg='black', height=900, width=300)
@@ -103,6 +116,8 @@ m7.pack(side=LEFT, padx=10)
 m6 = Button(frame_appetizers, width=200, bg='#022841', font=('Tajawal', 11), fg="white", bd=0, relief=FLAT, cursor='hand2', height=200, image=img_manu8, text=f'Salad     {drinks.list[1][1]} EGP', compound=TOP)
 m6.pack(side=LEFT, padx=10)
 def enter_name():
+    global f_name_entry
+    global  f_num_entry
     for widget in f1.winfo_children():
         widget.destroy()
 
@@ -138,14 +153,51 @@ def enter_name():
 
             
             frame_orders = Frame(f1, bg='white')
-            frame_orders.pack(fill=BOTH, expand=True,side=LEFT,pady=50, padx=10)  
+            frame_orders.pack(fill=BOTH, expand=True,side=LEFT,pady=40, padx=10) 
+            trv=ttk.Treeview(frame_orders,selectmode='browse')
+            trv.place(x=1,y=1)
+            trv.pack(fill=BOTH, expand=True,pady=50, padx=10)
+            trv["columns"]=('1','2')
+            trv.column("0" ,width=75,anchor='c')
+            trv.column("1" ,width=50,anchor='c')
+            trv.column("2" ,width=70,anchor='c')
+            trv.heading("#0",text="Name Meal",anchor="c")
+            trv.heading("#1",text="Num",anchor="c")
+            trv.heading("#2",text="price",anchor="c")
+            def bill():
+               total=0
+               for item in trv.get_children():
+                      trv.delete(item)
+               for i in range(len(sb)):
+                  if(int(sb[i].get())>0):
+                    price=int(sb[i].get())*menu[i][1]
+                    total=total+price
+                    my_str1=( str(sb[i].get()), str(price))
+                    trv.insert("",'end',iid=i,text=menu[i][0],values=my_str1)
+               final=total
+               
 
-
-            order_label = Label(frame_orders, text="Your Order", font=('Tajawal', 14), fg='black')
-            order_label.pack(pady=10)
-            btn21 = Button(frame_orders, text="Finish", font=('Tajawal', 12), bg='#022841', fg="white", height=2, width=20)
+            def finish():
+                Bill = Toplevel(root)  
+                Bill.geometry('350x700')  
+                Bill.title("Bill")    
+                frame = Frame(Bill, bg='#FEAD33')  
+                frame.pack(fill='both', expand=True)    
+                header_label = Label(frame, text="**********WeZo**********", bg='orange', font=("Arial", 16))  
+                header_label.pack(pady=10)  
+                time_label = Label(frame, text="------------------------", bg='orange')  
+                time_label.pack(pady=5)   
+                current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # تنسيق التاريخ والوقت  
+                time_display_label = Label(frame, text=current_time, bg='orange', font=("Arial", 12))  
+                time_display_label.pack(pady=5)
+                end_label = Label(frame, text="Good Bye", bg='orange', font=("Arial", 16))  
+                end_label.pack(pady=10)  
+            btn22 = Button(f1, text="ok", font=('Tajawal', 12), bg='#022841', fg="white", height=2, width=20,command=bill)
+            btn22.pack(pady=10,side=BOTTOM)         
+            btn21 = Button(f1, text="finish", font=('Tajawal', 12), bg='#022841', fg="white", height=2, width=20,command=finish)
             btn21.pack(pady=10,side=BOTTOM)
-
+           
+               
            
 
            
@@ -155,6 +207,7 @@ def enter_name():
 
     next_button = Button(f1, text="Next", font=('Tajawal', 12), bg='#022841', fg="white", command=save_info)
     next_button.pack(pady=20)
+    
 
 
 def seting():
@@ -384,5 +437,41 @@ def change_amount():
 
     label = Label(content_frame, text=" change amount My Boss", font=("Arial", 30), bg='#022841', fg="white")
     label.pack(pady=50)
+sb=[]
+font1=('Times',12,'normal')
+sv1=IntVar()
+sb1 = Spinbox(f2,from_=0,to_=5,font=font1,width=22,textvariable=sv1)
+sb1.place(x=18,y=254)
+sb.append(sb1)
+sv2=IntVar()
+sb2 = Spinbox(f2,from_=0,to_=5,font=font1,width=22,textvariable=sv2)
+sb2.place(x=245,y=254)
+sb.append(sb2)
+sv3=IntVar()  
+sb3 = Spinbox(f2,from_=0,to_=5,font=font1,width=22,textvariable=sv3)
+sb3.place(x=18,y=520)
+sb.append(sb3)
+sv4=IntVar()
+sb4 = Spinbox(f2,from_=0,to_=5,font=font1,width=22,textvariable=sv4)
+sb4.place(x=245,y=520)
+sb.append(sb4)
+sv5=IntVar()
+sb5 = Spinbox(f2,from_=0,to_=5,font=font1,width=22,textvariable=sv5)
+sb5.place(x=18,y=815)
+sb.append(sb5)
+sv6=IntVar()
+sb6 = Spinbox(f2,from_=0,to_=5,font=font1,width=22,textvariable=sv6)
+sb6.place(x=245,y=815)
+sb.append(sb6)
+sv7=IntVar()
+sb7 = Spinbox(f2,from_=0,to_=5,font=font1,width=22,textvariable=sv7)
+sb7.place(x=18,y=1090)
+sb.append(sb7)
+sv8=IntVar()
+sb8 = Spinbox(f2,from_=0,to_=5,font=font1,width=22,textvariable=sv8)
+sb8.place(x=245,y=1090)
+sb.append(sb8)
+
+
        
 root.mainloop()
